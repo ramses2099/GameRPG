@@ -9,9 +9,11 @@ int main()
 
 	while (game.IsRunning())
 	{
+		game.ProcessInput();
 		game.Update();
 		game.LateUpdate();
 		game.Draw();
+		game.CalculateDeltaTime();
 	}
 		
 	return 0;

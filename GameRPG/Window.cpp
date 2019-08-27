@@ -8,6 +8,7 @@ Window::Window(const std::string & windowName) :window(sf::VideoMode(800, 600), 
 
 Window::~Window()
 {
+
 }
 
 void Window::Update()
@@ -35,6 +36,12 @@ void Window::Draw(const sf::Drawable & drawable)
 void Window::EndDraw()
 {
 	window.display();
+}
+
+sf::Vector2u Window::GetCenter() const
+{
+	return sf::Vector2u((window.getSize().x/2), 
+		(window.getSize().y / 2));
 }
 
 bool Window::IsOpen() const
