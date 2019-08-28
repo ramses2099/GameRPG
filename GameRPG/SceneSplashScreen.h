@@ -3,12 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include "SceneStateMachine.h"
 #include "WorkingDirectory.h"
+#include "ResourceAllocator.h"
 
 class SceneSplashScreen :public Scene
 {
 public:
 	SceneSplashScreen(WorkingDirectory& workingDir,
-		SceneStateMachine& sceneStateMachine,Window& window);
+		SceneStateMachine& sceneStateMachine,
+		Window& window,
+		ResourceAllocator<sf::Texture>& textureAllocator);
+
 	~SceneSplashScreen();
 
 	void OnCreate()override;
@@ -27,6 +31,7 @@ private:
 	WorkingDirectory& workingDir;
 	SceneStateMachine& sceneStateMachine;
 	Window& window;
+	ResourceAllocator<sf::Texture>& textureAllocator;
 
 	float showForSeconds;
 	float currentSeconds;

@@ -2,15 +2,26 @@
 #include "SceneGame.h"
 
 
-SceneGame::SceneGame(WorkingDirectory& workingDir):workingDir(workingDir)
+SceneGame::SceneGame(WorkingDirectory& workingDir,
+	ResourceAllocator<sf::Texture>& textureAllocator)
+	:workingDir(workingDir),textureAllocator(textureAllocator)
 {
 }
 
 void SceneGame::OnCreate()
 {
-	texture.loadFromFile(workingDir.Get() + "graphics/slime01.png");
-	sprite.setTexture(texture);
-	sprite.setPosition(sf::Vector2f(350.f, 350.f));
+
+	player = std::make_shared<Object>();
+	auto sprite = player->AddComponent<C_Sprite>();
+	sprite->SetTextureAllocator(&textureAllocator);
+	sprite->Load(workingDir.Get() + "graphics/Sprite-boter.png");
+	
+	auto tran = player->GetComponent<C_Transform>();
+	tran->SetPosition(sf::Vector2f(250.f, 250.f));
+
+	auto movement = player->AddComponent<C_KeyboardMovement>();	
+	movement->SetInput(&input);
+
 }
 
 void SceneGame::OnDestroy()
@@ -27,41 +38,19 @@ void SceneGame::ProcessInput()
 	input.Update();
 }
 
+void SceneGame::LateUpdate(float deltaTime)
+{
+	player->LateUpdate(deltaTime);
+}
+
 void SceneGame::Update(float deltaTime)
 {
-	const sf::Vector2f& pos = sprite.getPosition();
-	const int moveSpeed = 200; //1
-
-	int xMove = 0;
-	if (input.IsKeyPressed(Input::Key::Left))
-	{
-		xMove = -moveSpeed;
-	}
-	else if (input.IsKeyPressed(Input::Key::Right))
-	{
-		xMove = moveSpeed;
-	}
-
-	int yMove = 0;
-	if (input.IsKeyPressed(Input::Key::Up))
-	{
-		yMove = -moveSpeed;
-	}
-	else if (input.IsKeyPressed(Input::Key::Down))
-	{
-		yMove = moveSpeed;
-	}
-
-	float xFrameMove = xMove * deltaTime;
-	float yFrameMove = yMove * deltaTime;
-
-	sprite.setPosition(pos.x + xFrameMove, pos.y + yFrameMove);
-
+	player->Update(deltaTime);
 }
 
 void SceneGame::Draw(Window & window)
 {
-	window.Draw(sprite);
+	player->Draw(window);
 }
 
 SceneGame::~SceneGame()

@@ -158,9 +158,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bitmask.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="C_KeyboardMovement.h" />
+    <ClInclude Include="C_Sprite.h" />
+    <ClInclude Include="C_Transform.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ResourceAllocator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneSplashScreen.h" />
@@ -170,9 +176,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmask.cpp" />
+    <ClCompile Include="C_KeyboardMovement.cpp" />
+    <ClCompile Include="C_Sprite.cpp" />
+    <ClCompile Include="C_Transform.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameRPG.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
