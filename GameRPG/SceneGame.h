@@ -6,6 +6,7 @@
 #include "C_Sprite.h"
 #include "C_KeyboardMovement.h"
 #include "ResourceAllocator.h"
+#include "ObjectCollection.h"
 
 
 class SceneGame:public Scene
@@ -30,6 +31,8 @@ private:
 	ResourceAllocator<sf::Texture>& textureAllocator;
 	Input input;
 	
-	std::shared_ptr<Object> player;
+	ObjectCollection objects;
+
+	
 };
 

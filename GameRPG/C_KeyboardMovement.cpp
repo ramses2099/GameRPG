@@ -22,6 +22,11 @@ void C_KeyboardMovement::SetMovementSpeed(int moveSpeed)
 	this->moveSpeed = moveSpeed;
 }
 
+void C_KeyboardMovement::Awake()
+{
+	animation = owner->GetComponent<C_Animation>();
+}
+
 void C_KeyboardMovement::Update(float deltaTime)
 {
 	if (input == nullptr)
@@ -33,10 +38,12 @@ void C_KeyboardMovement::Update(float deltaTime)
 	if (input->IsKeyPressed(Input::Key::Left))
 	{
 		xMove = -moveSpeed;
+		animation->SetAnimationDirection(FacingDirection::Left);
 	}
 	else if (input->IsKeyPressed(Input::Key::Right))
 	{
 		xMove = moveSpeed;
+		animation->SetAnimationDirection(FacingDirection::Right);
 	}
 
 	int yMove = 0;

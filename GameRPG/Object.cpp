@@ -2,15 +2,25 @@
 #include "Object.h"
 
 
-Object::Object()
+Object::Object():queuedForRemoval(false)
 {
 	transform = AddComponent<C_Transform>();
 }
-
-
+//
 Object::~Object()
 {
 }
+//
+bool Object::IsQueuedForRemoval()
+{
+	return queuedForRemoval;
+}
+//
+void Object::QueueForRemoval()
+{
+	queuedForRemoval = true;
+}
+//
 void Object::Awake()
 {
 	for (int i = components.size() - 1; i >= 0; i--)

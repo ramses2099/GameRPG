@@ -2,8 +2,7 @@
 #include "SceneSplashScreen.h"
 
 
-SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir,
-	SceneStateMachine& sceneStateMachine,
+SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir,SceneStateMachine& sceneStateMachine,
 	Window& window,	ResourceAllocator<sf::Texture>& textureAllocator) :sceneStateMachine(sceneStateMachine),
 	workingDir(workingDir), window(window),textureAllocator(textureAllocator), switchToState(0), currentSeconds(0.f),
 	showForSeconds(3.f)
@@ -18,7 +17,7 @@ SceneSplashScreen::~SceneSplashScreen()
 void SceneSplashScreen::OnCreate()
 {
 
-	int textureID = textureAllocator.add(workingDir.Get() + "graphics/mainmenu.png");
+	int textureID = textureAllocator.add(workingDir.Get() + "graphics/that_games_guy_logo.png");
 	
 	if (textureID >= 0)
 	{

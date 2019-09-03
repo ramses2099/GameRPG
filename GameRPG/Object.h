@@ -11,8 +11,7 @@ public:
 	~Object();
 
 	std::shared_ptr<C_Transform> transform;
-
-
+	
 	template <typename T> std::shared_ptr<T> AddComponent() // 1
 	{
 		// This ensures that we only try to add a class the derives 
@@ -55,7 +54,11 @@ public:
 
 		return nullptr;
 	};
-		   
+	
+	bool IsQueuedForRemoval();
+	void QueueForRemoval();
+
+
 	void Awake();
 	void Start();
 
@@ -64,5 +67,7 @@ public:
 	void Draw(Window& window);
 private:
 	std::vector<std::shared_ptr<Component>> components;
+	//
+	bool queuedForRemoval;
 };
 

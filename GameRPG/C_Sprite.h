@@ -14,11 +14,16 @@ public:
 
 	void SetTextureAllocator(ResourceAllocator<sf::Texture>* allocator);
 
+	void SetTextureRect(int x, int y, int width, int height);
+	void SetTextureRect(const sf::IntRect& rect);
+	
+
 	void LateUpdate(float deltaTime)override;
 	void Draw(Window& window)override;
 
 private:
 	ResourceAllocator<sf::Texture>* allocator;
 	sf::Sprite sprite;
+	int currentTextureId;
 };
 
